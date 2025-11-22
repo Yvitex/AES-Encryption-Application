@@ -1,5 +1,5 @@
 # AES Encryption Application
-This app basically encrypt data with AES, used for storing senstitive information
+This app basically encrypt data with AES offline, primarily created to avoid using risky online platforms.
 
 ## Features
 
