@@ -1,0 +1,5 @@
+{
+    "secret_key": "1231231",
+    "iv": "131",
+    "mode": "Encryption Mode"
+}
