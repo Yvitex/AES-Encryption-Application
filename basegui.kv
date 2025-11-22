@@ -1,0 +1,199 @@
+WindowManager:
+    BaseWidget:
+    SettingWidget:
+
+
+<BaseWidget>
+    name: "base"
+    user_input: user_input
+    output_result: output_result
+
+    StackLayout:
+        size: root.size
+        orientation: "rl-tb"
+        padding: 40
+
+        StackLayout:
+            orientation: "lr-tb"
+            size_hint_y: None
+            height: 50
+
+
+            Label:
+                text: "AES Encryption Tool"
+                font_size: 30
+                width: root.width - 80 - 50
+                height: 50
+                size_hint: (None, None)
+                text_size: self.size
+                bold: True
+                color: root.main_color
+                pos_hint: {'center_x': 0.5, 'y': 0.8}
+
+
+            Button:
+                background_normal: './Images/img.png'
+                background_down: './Images/img.png'
+                border: (0, 0, 0, 0)
+
+                size_hint: (None, None)
+                size: 50, 50
+
+                on_release:
+                    app.root.current = "setting"
+                    root.manager.transition.direction = "left"
+
+        Widget:
+            size_hint: (1, None)
+            height: 49
+
+        TextInput:
+            id: user_input
+            multiline: True
+            size_hint: (1, None)
+            height: 228
+            foreground_color: 1, 1, 1, 1
+            background_color: root.darker_color
+
+        Widget:
+            size_hint: (1, None)
+            height: 35
+
+        Button:
+            text: "Encrypt"
+            bold: True
+            font_size: 26
+            size_hint: (1, None)
+            size: root.width, 63
+            background_normal: ''
+            background_color: root.main_color
+            on_release: root.encrypt()
+
+        Widget:
+            size_hint: (1, None)
+            height: 35
+
+        TextInput:
+            id: output_result
+            foreground_color: 1, 1, 1, 1
+            multiline: True
+            size_hint: (1, None)
+            readonly: True
+            hint_text: "Encrypted text will appear here..."
+            height: 150
+            background_color: root.darker_color
+            cursor_color: 0, 0, 0, 0
+
+<SettingWidget>
+    name: "setting"
+    mode_button: mode_button
+    secret_key: secret_key
+    iv: iv
+
+    StackLayout:
+        orientation: "lr-tb"
+        padding: 16
+
+        Widget:
+            size_hint: (1, None)
+            height: 16
+
+        Label:
+            text: "Tool Settings"
+            font_size: 30
+            size_hint: (1, None)
+            height: 50
+            bold: True
+            color: root.main_color
+
+        Widget:
+            size_hint: (1, None)
+            height: 16
+
+        BoxLayout:
+            orientation: "vertical"
+            size_hint: (1, None)
+
+            Label:
+                text: "Select Mode"
+                text_size: self.size
+                halign: "left"
+                valign: "center"
+
+            Button:
+                id: mode_button
+                text: "Select a Mode"
+                halign: "left"
+                size_hint_y: None
+                height: 50
+                background_normal: ""
+                background_color: root.darker_color
+
+                on_kv_post:
+                    mode_button.dropdown = root.create_dropdown()
+
+                on_release: mode_button.dropdown.open(self)
+        Widget:
+            size_hint: (1, None)
+            height: 16
+
+        BoxLayout:
+            orientation: "vertical"
+            size_hint: (1, None)
+            Label:
+                text: "Secret Key"
+                text_size: self.size
+                halign: "left"
+                valign: "center"
+
+            TextInput:
+                id: secret_key
+                multiline: False
+                background_color: root.darker_color
+
+        Widget:
+            size_hint: (1, None)
+            height: 16
+
+        BoxLayout:
+            orientation: "vertical"
+            size_hint: (1, None)
+            Label:
+                text: "IV Key"
+                text_size: self.size
+                halign: "left"
+                valign: "center"
+
+            TextInput:
+                id: iv
+                multiline: False
+                background_color: root.darker_color
+
+        Widget:
+            size_hint: (1, None)
+            height: 16
+
+        BoxLayout:
+            orientation: "horizontal"
+            size_hint: (1, None)
+            spacing: 20
+
+            Button:
+                size_hint: (0.9, None)
+                background_normal: ""
+                color: 0, 0, 0, 1
+                background_color: root.main_color
+                text: "Save Settings"
+                height: 55
+                on_release: root.save_setting()
+
+            Button:
+                size_hint: (0.9, None)
+                text: "Cancel"
+                background_normal: ""
+                color: 0, 0, 0, 1
+                background_color: 1, 1, 1, 1
+                height: 55
+                on_release:
+                    app.root.current = "base"
+                    root.manager.transition.direction = "right"
