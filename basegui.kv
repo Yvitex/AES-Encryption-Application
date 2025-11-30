@@ -7,6 +7,7 @@ WindowManager:
     name: "base"
     user_input: user_input
     output_result: output_result
+    encryptor_btn: encryptor_btn
 
     StackLayout:
         size: root.size
@@ -59,6 +60,7 @@ WindowManager:
             height: 35
 
         Button:
+            id: encryptor_btn
             text: "Encrypt"
             bold: True
             font_size: 26
@@ -66,7 +68,7 @@ WindowManager:
             size: root.width, 63
             background_normal: ''
             background_color: root.main_color
-            on_release: root.encrypt()
+            on_release: root.unified_encrypt_decrypt()
 
         Widget:
             size_hint: (1, None)
@@ -226,5 +228,4 @@ WindowManager:
                 background_color: 1, 1, 1, 1
                 height: 55
                 on_release:
-                    app.root.current = "base"
-                    root.manager.transition.direction = "right"
+                    root.go_to_base()
