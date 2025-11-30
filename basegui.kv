@@ -40,8 +40,7 @@ WindowManager:
                 size: 50, 50
 
                 on_release:
-                    app.root.current = "setting"
-                    root.manager.transition.direction = "left"
+                    root.go_to_settings()
 
         Widget:
             size_hint: (1, None)
@@ -89,6 +88,8 @@ WindowManager:
     mode_button: mode_button
     secret_key: secret_key
     iv: iv
+    secret_key_label: secret_key_label
+    iv_label: iv_label
 
     StackLayout:
         orientation: "lr-tb"
@@ -135,11 +136,12 @@ WindowManager:
                 on_release: mode_button.dropdown.open(self)
         Widget:
             size_hint: (1, None)
-            height: 16
+            height: 32
 
         BoxLayout:
             orientation: "vertical"
             size_hint: (1, None)
+            spacing: 8
             Label:
                 text: "Secret Key"
                 text_size: self.size
@@ -150,6 +152,19 @@ WindowManager:
                 id: secret_key
                 multiline: False
                 background_color: root.darker_color
+                password: True
+                foreground_color: 1, 1, 1, 1
+                text_size: self.size
+                valign: "center"
+                padding: [8, 16]
+                size_hint_y: None
+                height: 48
+            Label:
+                id: secret_key_label
+                color: 1, 0, 0, 1
+                text: ""
+                text_size: self.size
+                halign: "left"
 
         Widget:
             size_hint: (1, None)
@@ -158,6 +173,8 @@ WindowManager:
         BoxLayout:
             orientation: "vertical"
             size_hint: (1, None)
+            spacing: 8
+
             Label:
                 text: "IV Key"
                 text_size: self.size
@@ -168,6 +185,20 @@ WindowManager:
                 id: iv
                 multiline: False
                 background_color: root.darker_color
+                password: True
+                foreground_color: 1, 1, 1, 1
+                text_size: self.size
+                valign: "center"
+                padding: [8, 16]
+                size_hint_y: None
+                height: 48
+            Label:
+                id: iv_label
+                color: 1, 0, 0, 1
+                text: ""
+                text_size: self.size
+                halign: "left"
+
 
         Widget:
             size_hint: (1, None)
