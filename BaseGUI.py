@@ -10,7 +10,7 @@ Config.set('graphics', 'height', window_height)
 from kivy.app import App
 from kivy.properties import ListProperty
 from kivy.core.window import Window
-from kivy.uix.screenmanager import ScreenManager, Screen
+from kivy.uix.screenmanager import ScreenManager
 from kivy.lang.builder import Builder
 
 from Widgets.BaseWidget import BaseWidget
